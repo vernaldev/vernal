@@ -12,6 +12,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
+  annotations:
+    lighthouse.com/website-url: https://backstage.io
+  # links:
+  #   - url: https://google.com
+  #     title: My Dashboard
+  #     icon: dashboard
 spec:
   type: website
   lifecycle: experimental

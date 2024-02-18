@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
+  title: My Test Backstage App
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Vernal
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -18,6 +18,8 @@ backend:
     # Uncomment the following host directive to bind to specific interfaces
     # host: 127.0.0.1
   csp:
+    frame-src:
+      - http://localhost:4008
     connect-src: ["'self'", 'http:', 'https:']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
@@ -28,9 +30,14 @@ backend:
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
   database:
+    # config options: https://node-postgres.com/apis/client
     client: better-sqlite3
     connection: ':memory:'
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+
+# Lighthouse configuration
+lighthouse:
+  baseUrl: http://localhost:4008
 
 integrations:
   github:

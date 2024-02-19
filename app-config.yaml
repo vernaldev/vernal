@@ -38,6 +38,11 @@ backend:
 # Lighthouse configuration
 lighthouse:
   baseUrl: http://localhost:4008
+  schedule:
+    frequency:
+      hours: 12
+    timeout:
+      minutes: 30
 
 integrations:
   github:

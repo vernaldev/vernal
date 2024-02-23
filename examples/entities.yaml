@@ -14,10 +14,28 @@ metadata:
   name: example-website
   annotations:
     lighthouse.com/website-url: https://backstage.io
-  # links:
-  #   - url: https://google.com
-  #     title: My Dashboard
-  #     icon: dashboard
+  links:
+    - url: https://google.com
+      title: My Dashboard
+      icon: dashboard
+spec:
+  type: website
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  providesApis: [example-grpc-api]
+---
+# winston-test-website
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: winston-test-website
+  annotations:
+    lighthouse.com/website-url: https://spotify.com
+  links:
+    - url: https://google.com
+      title: My Dashboard
+      icon: dashboard
 spec:
   type: website
   lifecycle: experimental

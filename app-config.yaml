@@ -86,6 +86,12 @@ catalog:
       rules:
         - allow: [Template]
 
+    # Another local example template
+    - type: file
+      target: ../../templates/test_template.yaml
+      rules:
+        - allow: [Template]
+
     # Local example organizational data
     - type: file
       target: ../../examples/org.yaml

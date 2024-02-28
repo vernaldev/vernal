@@ -43,7 +43,7 @@ spec:
       name: Fetch Base
       action: fetch:template
       input:
-        url: ./templates
+        url: ./nextexpress_template
         values:
           name: ${{ parameters.name }}
 

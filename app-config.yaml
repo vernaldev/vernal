@@ -37,7 +37,8 @@ integrations:
     - host: github.com
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
       # about setting up the GitHub integration here: https://backstage.io/docs/getting-started/configuration#setting-up-a-github-integration
-      token: ${GITHUB_TOKEN}
+      # token: ${GITHUB_TOKEN}
+      token: ${{ secret.github.token }}
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -67,7 +68,11 @@ auth:
   providers: {}
 
 scaffolder:
-  # see https://backstage.io/docs/features/software-templates/configuration for software template options
+  defaultAuthor:
+    name: hpungsan # Defaults to `Scaffolder`
+    email: hpung360@gmail.com # Defaults to `scaffolder@backstage.io`
+  defaultCommitMessage: "changes" # Defaults to 'Initial commit'
+
 
 catalog:
   import:
@@ -88,7 +93,7 @@ catalog:
         - allow: [Template]
 
     - type: file
-      target: ../../templates/NextExpress.yaml
+      target: ../../nextexpress_template/NextExpress.yaml
       rules:
         - allow: [Template]
 
@@ -98,7 +103,7 @@ catalog:
       rules:
         - allow: [User, Group]
 
-    ## Uncomment these lines to add more example data
+    # # Uncomment these lines to add more example data
     # - type: url
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
 

@@ -1,67 +1,100 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: example-nextjs-fastapi-template
-  title: Example Next.js FastAPI Template
+  name: nextjs-fastapi-app
+  title: Next.js and FastAPI App
   description: A basic Next.js app using FastAPI
 spec:
   owner: user:guest
   type: service
 
-  # these are the steps which are rendered in the frontend with the form input
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
   parameters:
-    - title: Fill in some steps
-      required:
-        - name
-      properties:
-        name:
-          title: Name
-          type: string
-          description: Unique name of the component
-          ui:autofocus: true
-          ui:options:
-            rows: 5
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+  - title: Fill in some metadata
+    required:
+    - name
+    properties:
+      name:
+        title: Name
+        type: string
+        description: Unique name of the component
+        ui:autofocus: true
+        ui:options:
+          rows: 5
+      owner:
+        title: Owner
+        type: string
+        description: Owner of the component
+        ui:field: OwnerPicker
+        ui:options:
+          catalogFilter:
+            kind: Group
+      description:
+        title: Repository Description
+        type: string
+        description: Description of repository
+      repoVisibility:
+        title: Repository Visibility
+        type: string
+        description: Visibility of repository
+        default: public
+        enum:
+        - public
+        - private
+        - internal
+        enumNames:
+        - Public
+        - Private
+        - Internal
+  - title: Choose a location
+    required:
+    - repoUrl
+    properties:
+      repoUrl:
+        title: Repository Location
+        type: string
+        ui:field: RepoUrlPicker
+        ui:options:
+          allowedHosts:
+          - github.com
 
-  # here's the steps that are executed in series in the scaffolder backend
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
   steps:
-    - id: fetch-base
-      name: Fetch Base
-      action: fetch:template
-      input:
-        url: ./content
-        values:
-          name: ${{ parameters.name }}
+  # Each step executes an action, in this case one templates files into the working directory.
+  - id: fetch-base
+    name: Fetch Base
+    action: fetch:template
+    input:
+      url: https://github.com/vernaldev/template-nextjs-fastapi
+      values:
+        name: ${{ parameters.name }}
+        owner: ${{ parameters.owner }}
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+  # This step publishes the contents of the working directory to GitHub.
+  - id: publish
+    name: Publish
+    action: publish:github
+    input:
+      allowedHosts: ['github.com']
+      description: ${{ parameters.description }}
+      repoUrl: ${{ parameters.repoUrl }}
+      repoVisibility: ${{ parameters.repoVisibility }}
 
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+  # The final step is to register our new component in the catalog.
+  - id: register
+    name: Register
+    action: catalog:register
+    input:
+      repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+      catalogInfoPath: '/catalog-info.yaml'
 
+  # Outputs are displayed to the user after a successful execution of the template.
   output:
     links:
-      - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        entityRef: ${{ steps['register'].output.entityRef }}
+    - title: Repository
+      url: ${{ steps['publish'].output.remoteUrl }}
+    - title: Open in catalog
+      icon: catalog
+      entityRef: ${{ steps['register'].output.entityRef }}

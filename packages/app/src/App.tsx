@@ -25,6 +25,7 @@ import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
+import { CustomCatalogPage } from './components/catalog/CustomCatalogPage';
 import { Root } from './components/Root';
 
 import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
@@ -58,7 +59,9 @@ const app = createApp({
 const routes = (
   <FlatRoutes>
     <Route path="/" element={<Navigate to="catalog" />} />
-    <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/catalog" element={<CatalogIndexPage />}>
+      {/* <CustomCatalogPage /> */}
+    </Route>
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}

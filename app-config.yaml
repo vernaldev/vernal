@@ -59,14 +59,10 @@ techdocs:
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
-  session:
-    secret: ${SESSION_SECRET}
   providers:
     keycloak:
       development:
         metadataUrl: https://sso.local.lan.vernal.dev/realms/vernal/.well-known/openid-configuration
-        clientId: ${AUTH_MY_CLIENT_ID}
-        clientSecret: ${AUTH_MY_CLIENT_SECRET}
         prompt: login
 
 scaffolder:

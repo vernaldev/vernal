@@ -59,7 +59,11 @@ techdocs:
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
+  providers:
+    keycloak:
+      development:
+        metadataUrl: https://sso.local.lan.vernal.dev/realms/vernal/.well-known/openid-configuration
+        prompt: login
 
 scaffolder:
   defaultAuthor:

@@ -1,9 +1,6 @@
 import { BackstageOverrides } from '@backstage/core-components';
-import { UnifiedTheme } from '@backstage/theme';
 
-export const customThemeOverrides = (
-  theme: UnifiedTheme,
-): BackstageOverrides => {
+export const customThemeOverrides = (): BackstageOverrides => {
   return {
     BackstagePage: {
       root: {

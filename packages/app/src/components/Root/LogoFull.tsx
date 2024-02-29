@@ -1,11 +1,9 @@
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import lightLogo from './logo/vernal-light.png'; // Adjust the path as necessary
-import darkLogo from './logo/vernal-dark.png'; // Adjust the path as necessary
+import darkLogo from './logo/vernal-dark.png';
 
 // Define styles
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   logoCenter: {
     display: 'block',
     margin: '0 auto', // Centers the image horizontally
@@ -28,14 +26,11 @@ const LogoFull: React.FC<LogoFullProps> = ({
   marginLeft = '50px', // Default to '0' if not provided
 }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const isDarkMode = theme.palette.type === 'dark';
-
   const combinedClassName = `${classes.logoCenter} ${className}`.trim();
 
   return (
     <img
-      src={isDarkMode ? darkLogo : lightLogo}
+      src={darkLogo}
       alt="Vernal Logo"
       className={combinedClassName}
       style={{ width, height, marginLeft }} // Apply marginLeft from props

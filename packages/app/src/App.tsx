@@ -39,7 +39,24 @@ import { createUnifiedTheme, PageTheme, shapes } from '@backstage/theme';
 
 
 
+import { keycloakOIDCAuthApiRef } from './apis';
+import { SignInPage } from '@backstage/core-components';
+
 const app = createApp({
+  components: {
+    SignInPage: props => (
+      <SignInPage
+        {...props}
+        auto
+        provider={{
+          id: 'keycloak',
+          title: 'Keycloak',
+          message: 'Sign in using Keycloak',
+          apiRef: keycloakOIDCAuthApiRef,
+        }}
+      />
+    ),
+  },
   apis,
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {

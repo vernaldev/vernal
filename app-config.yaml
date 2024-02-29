@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
+  title: Vernal
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Vernal
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -80,27 +80,34 @@ catalog:
   - allow: [Component, System, API, Resource, Location]
   locations:
   # Local example data, file locations are relative to the backend process, typically `packages/backend`
+  # in catalog (all components)
   - type: file
     target: ../../examples/entities.yaml
 
-  # Local example template
+  # in create
   - type: file
     target: ../../examples/template/template.yaml
     rules:
     - allow: [Template]
 
-  # Local example organizational data
+  - type: file
+    target: ../../templates/nextjs-express.yaml
+    rules:
+    - allow: [Template]
+
+  # Local example organizational data (for entities)
   - type: file
     target: ../../examples/org.yaml
     rules:
     - allow: [User, Group]
 
-  ## Uncomment these lines to add more example data
+  # # Uncomment these lines to add more example data
   # - type: url
   #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
 
-## Uncomment these lines to add an example org
+# # Uncomment these lines to add an example org
 # - type: url
 #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
 #   rules:
 #     - allow: [User, Group]
+

@@ -34,7 +34,7 @@ import {
   EntityTypePicker,
   // UserListFilterKind,
   UserListPicker,
-  // EntityKindPicker,
+  EntityKindPicker,
   // EntityNamespacePicker,
   // EntityOwnerPickerProps,
 } from '@backstage/plugin-catalog-react';
@@ -155,6 +155,7 @@ export const CustomCatalogPage = ({
   columns,
   actions,
   initiallySelectedFilter = 'owned',
+  initialKind = 'Component',
 }: DefaultCatalogPageProps) => {
   const createComponentLink = useRouteRef(
     catalogPlugin.externalRoutes.createComponent,
@@ -163,12 +164,13 @@ export const CustomCatalogPage = ({
     <PageWithHeader title="Vernal Catalog" themeId="home">
       <EntityListProvider>
         <Content>
-          <ContentHeader titleComponent="Search">
-            {/* <CreateButton title="Create Component" to={createComponentLink()} /> */}
+          <ContentHeader title="">
+            <CreateButton title="Create Component" to={createComponentLink()} />
             <SupportButton>All your software catalog entities</SupportButton>
           </ContentHeader>
           <CatalogFilterLayout>
             <CatalogFilterLayout.Filters>
+              <EntityKindPicker initialFilter={initialKind} />
               <EntityTypePicker />
               <UserListPicker initialFilter={initiallySelectedFilter} />
               <EntitySecurityTierPicker />

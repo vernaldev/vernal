@@ -60,7 +60,7 @@ const routes = (
   <FlatRoutes>
     <Route path="/" element={<Navigate to="catalog" />} />
     <Route path="/catalog" element={<CatalogIndexPage />}>
-      {/* <CustomCatalogPage /> */}
+      <CustomCatalogPage />
     </Route>
     <Route
       path="/catalog/:namespace/:kind/:name"
@@ -77,7 +77,21 @@ const routes = (
         <ReportIssue />
       </TechDocsAddons>
     </Route>
-    <Route path="/create" element={<ScaffolderPage />} />
+    {/* Add groupings to template page */}
+    <Route
+      path="/create"
+      element={
+        <ScaffolderPage
+          groups={[
+            {
+              title: 'Recommended',
+              filter: entity =>
+                entity?.metadata?.tags?.includes('recommended') ?? false,
+            },
+          ]}
+        />
+      }
+    />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
       path="/tech-radar"

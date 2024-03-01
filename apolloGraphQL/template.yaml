@@ -5,6 +5,7 @@ metadata:
   name: apollo-graphql
   title: Apollo GraphQL Template
   description: Creates a Next.js app with ApolloGraphQL
+  tags: 'recommended'
 spec:
   owner: user:guest
   type: service

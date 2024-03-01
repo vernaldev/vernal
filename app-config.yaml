@@ -18,6 +18,8 @@ backend:
     # Uncomment the following host directive to bind to specific interfaces
     # host: 127.0.0.1
   csp:
+    frame-src:
+    - http://localhost:4008
     connect-src: ["'self'", 'http:', 'https:']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
@@ -28,9 +30,21 @@ backend:
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
   database:
+    # config options: https://node-postgres.com/apis/client
     client: better-sqlite3
     connection: ':memory:'
     # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+
+# Lighthouse config
+lighthouse:
+  baseUrl: http://localhost:4008 #lighthouse-audit-service URL
+  # lighthouse backend automatic scheduler config
+  schedule:
+    frequency:
+      hours: 12 # Default: 1 day
+      # minutes: 5   # UNCOMMENT FOR DEMO
+    timeout:
+      minutes: 30 # Default: 10 minutes
 
 integrations:
   github:
@@ -84,19 +98,18 @@ catalog:
   - type: file
     target: ../../examples/entities.yaml
 
-  # in create
   - type: file
-    target: ../../examples/template/template.yaml
+    target: ../../templates/nextjs-express.yaml
     rules:
     - allow: [Template]
 
   - type: file
     target: ../../templates/nextjs-fastapi.yaml
     rules:
-      - allow: [Template]
-    
+    - allow: [Template]
+
   - type: file
-    target: ../../templates/nextjs-express.yaml
+    target: ../../templates/nextjs-apollo.yaml
     rules:
     - allow: [Template]
 
@@ -115,4 +128,3 @@ catalog:
 #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
 #   rules:
 #     - allow: [User, Group]
-

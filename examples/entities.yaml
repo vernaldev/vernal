@@ -13,7 +13,6 @@ metadata:
   name: example-website
   annotations:
     lighthouse.com/website-url: https://backstage.io
-    backstage.io/techdocs-ref: dir:.
   links:
   - url: https://google.com
     title: My Dashboard
@@ -23,7 +22,6 @@ spec:
   lifecycle: experimental
   owner: guests
   system: examples
-  providesApis: [example-grpc-api]
 ---
 # winston-test-website
 apiVersion: backstage.io/v1alpha1
@@ -41,25 +39,3 @@ spec:
   lifecycle: experimental
   owner: guests
   system: examples
-  providesApis: [example-grpc-api]
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: example-grpc-api
-spec:
-  type: grpc
-  lifecycle: experimental
-  owner: guests
-  system: examples
-  definition: |
-    syntax = "proto3";
-
-    service Exampler {
-      rpc Example (ExampleMessage) returns (ExampleMessage) {};
-    }
-
-    message ExampleMessage {
-      string example = 1;
-    };

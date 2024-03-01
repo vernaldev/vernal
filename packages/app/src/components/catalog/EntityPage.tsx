@@ -55,6 +55,13 @@ import {
   RELATION_PROVIDES_API,
 } from '@backstage/catalog-model';
 
+// Imports for Lighthouse
+import {
+  EntityLighthouseContent,
+  EntityLastLighthouseAuditCard,
+  isLighthouseAvailable,
+} from '@backstage/plugin-lighthouse';
+
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
@@ -137,6 +144,14 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+
+    <EntitySwitch>
+      <EntitySwitch.Case if={isLighthouseAvailable}>
+        <Grid item md={6}>
+          <EntityLastLighthouseAuditCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
 );
 
@@ -201,6 +216,10 @@ const websiteEntityPage = (
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/lightouse" title="Lighthouse">
+      <EntityLighthouseContent />
     </EntityLayout.Route>
   </EntityLayout>
 );

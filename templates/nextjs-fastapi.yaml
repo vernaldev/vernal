@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: nextjs-apollo-app
-  title: Next.js and Apollo GraphQL App
-  description: A Next.js app with an Apollo GraphQL server.
+  name: nextjs-fastapi-app
+  title: Next.js and FastAPI App
+  description: A basic Next.js app using FastAPI
 spec:
   owner: user:guest
   type: service
@@ -62,7 +62,7 @@ spec:
     name: Fetch Base
     action: fetch:template
     input:
-      url: https://github.com/vernaldev/template-nextjs-apollo
+      url: https://github.com/vernaldev/template-nextjs-fastapi
       values:
         name: ${{ parameters.name }}
         owner: ${{ parameters.owner }}

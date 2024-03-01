@@ -19,7 +19,7 @@ backend:
     # host: 127.0.0.1
   csp:
     frame-src:
-    - http://localhost:4008
+      - http://localhost:4008
     connect-src: ["'self'", 'http:', 'https:']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
@@ -41,16 +41,16 @@ lighthouse:
   # lighthouse backend automatic scheduler config
   schedule:
     frequency:
-      hours: 12 # Default: 1 day
-      # minutes: 5   # UNCOMMENT FOR DEMO
+      # hours: 12 # Default: 1 day
+      minutes: 1 # UNCOMMENT FOR DEMO
     timeout:
       minutes: 30 # Default: 10 minutes
 
 integrations:
   github:
-  - host: github.com
-    apps:
-    - $include: github-app-vernal-dev-credentials.yaml
+    - host: github.com
+      apps:
+        - $include: github-app-vernal-dev-credentials.yaml
 
 proxy: {}
 ### Example for how to add a proxy endpoint for the frontend.
@@ -91,38 +91,37 @@ catalog:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-  - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, System, API, Resource, Location]
   locations:
-  # Local example data, file locations are relative to the backend process, typically `packages/backend`
-  # in catalog (all components)
-  - type: file
-    target: ../../examples/entities.yaml
+    # Local example data, file locations are relative to the backend process, typically `packages/backend`
+    # in catalog (all components)
+    - type: file
+      target: ../../examples/entities.yaml
 
-  - type: file
-    target: ../../templates/nextjs-express.yaml
-    rules:
-    - allow: [Template]
+    - type: file
+      target: ../../templates/nextjs-express.yaml
+      rules:
+        - allow: [Template]
 
-  - type: file
-    target: ../../templates/nextjs-fastapi.yaml
-    rules:
-    - allow: [Template]
+    - type: file
+      target: ../../templates/nextjs-fastapi.yaml
+      rules:
+        - allow: [Template]
 
-  - type: file
-    target: ../../templates/nextjs-apollo.yaml
-    rules:
-    - allow: [Template]
+    - type: file
+      target: ../../templates/nextjs-apollo.yaml
+      rules:
+        - allow: [Template]
 
-  # Local example organizational data (for entities)
-  - type: file
-    target: ../../examples/org.yaml
-    rules:
-    - allow: [User, Group]
+    # Local example organizational data (for entities)
+    - type: file
+      target: ../../examples/org.yaml
+      rules:
+        - allow: [User, Group]
 
   # # Uncomment these lines to add more example data
   # - type: url
   #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-
 # # Uncomment these lines to add an example org
 # - type: url
 #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml

@@ -13,7 +13,6 @@ import {
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import { orgPlugin } from '@backstage/plugin-org';
 import { SearchPage } from '@backstage/plugin-search';
-import { TechRadarPage } from '@backstage/plugin-tech-radar';
 import {
   TechDocsIndexPage,
   techdocsPlugin,
@@ -38,6 +37,8 @@ import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
 import { keycloakOIDCAuthApiRef } from './apis';
 import { SignInPage } from '@backstage/core-components';
+import { themes, UnifiedThemeProvider } from '@backstage/theme';
+import { vernalTheme } from './theme/vernalTheme';
 
 const app = createApp({
   components: {
@@ -72,6 +73,32 @@ const app = createApp({
       catalogIndex: catalogPlugin.routes.catalogIndex,
     });
   },
+  themes: [
+    {
+      id: 'light-theme',
+      title: 'Light Theme',
+      variant: 'light',
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={themes.light} children={children} />
+      ),
+    },
+    {
+      id: 'dark-theme',
+      title: 'Dark Theme',
+      variant: 'dark',
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={themes.dark} children={children} />
+      ),
+    },
+    {
+      id: 'vernal-theme',
+      title: 'Vernal Theme',
+      variant: 'light',
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={vernalTheme} children={children} />
+      ),
+    },
+  ],
 });
 
 const routes = (
@@ -97,10 +124,6 @@ const routes = (
     </Route>
     <Route path="/create" element={<ScaffolderPage />} />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
-    <Route
-      path="/tech-radar"
-      element={<TechRadarPage width={1500} height={800} />}
-    />
     <Route
       path="/catalog-import"
       element={

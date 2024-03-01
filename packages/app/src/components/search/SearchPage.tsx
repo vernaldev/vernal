@@ -24,10 +24,11 @@ import {
   Page,
 } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
+import { createUnifiedTheme } from '@backstage/theme';
 
 const useStyles = makeStyles((theme: Theme) => ({
   bar: {
-    padding: theme.spacing(1, 0),
+    padding: theme.spacing(1, 2),
   },
   filters: {
     padding: theme.spacing(2),

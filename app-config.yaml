@@ -41,8 +41,8 @@ lighthouse:
   # lighthouse backend automatic scheduler config
   schedule:
     frequency:
-      hours: 12 # Default: 1 day
-      # minutes: 5   # UNCOMMENT FOR DEMO
+      # hours: 12 # Default: 1 day
+      minutes: 1 # UNCOMMENT FOR DEMO
     timeout:
       minutes: 30 # Default: 10 minutes
 
@@ -110,6 +110,11 @@ catalog:
 
   - type: file
     target: ../../templates/nextjs-apollo.yaml
+    rules:
+    - allow: [Template]
+
+  - type: file
+    target: ../../templates/nextjs-typegraphql.yaml
     rules:
     - allow: [Template]
 

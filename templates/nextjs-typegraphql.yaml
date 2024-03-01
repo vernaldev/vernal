@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: nextjs-express-app
-  title: Next.js and Express App
-  description: A Next.js app with an Express server.
+  name: nextjs-typegraphql-app
+  title: Next.js and TypeGraphQL App
+  description: A Next.js app with an TypeGraphQL server.
 spec:
   owner: user:guest
   type: service
@@ -62,7 +62,7 @@ spec:
     name: Fetch Base
     action: fetch:template
     input:
-      url: https://github.com/vernaldev/template-nextjs-express
+      url: https://github.com/vernaldev/template-nextjs-typegraphql
       values:
         name: ${{ parameters.name }}
         owner: ${{ parameters.owner }}

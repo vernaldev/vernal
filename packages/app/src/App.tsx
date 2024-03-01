@@ -82,17 +82,17 @@ const app = createApp({
         <UnifiedThemeProvider theme={themes.light} children={children} />
       ),
     },
+    // {
+    //   id: 'dark-theme',
+    //   title: 'Dark Theme',
+    //   variant: 'dark',
+    //   Provider: ({ children }) => (
+    //     <UnifiedThemeProvider theme={themes.dark} children={children} />
+    //   ),
+    // },
     {
       id: 'dark-theme',
       title: 'Dark Theme',
-      variant: 'dark',
-      Provider: ({ children }) => (
-        <UnifiedThemeProvider theme={themes.dark} children={children} />
-      ),
-    },
-    {
-      id: 'vernal-theme',
-      title: 'Vernal Theme',
       variant: 'light',
       Provider: ({ children }) => (
         <UnifiedThemeProvider theme={vernalTheme} children={children} />

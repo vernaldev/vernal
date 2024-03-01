@@ -110,12 +110,12 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           </SidebarSubmenu>
         </SidebarItem>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         <SidebarItem icon={Flare} to="lighthouse" text="Lighthouse" />
+        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>
-          <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+          {/* <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" /> */}
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />

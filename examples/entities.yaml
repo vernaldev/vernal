@@ -1,4 +1,3 @@
----
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -14,10 +13,11 @@ metadata:
   name: example-website
   annotations:
     lighthouse.com/website-url: https://backstage.io
+    backstage.io/techdocs-ref: dir:.
   links:
-    - url: https://google.com
-      title: My Dashboard
-      icon: dashboard
+  - url: https://google.com
+    title: My Dashboard
+    icon: dashboard
 spec:
   type: website
   lifecycle: experimental
@@ -33,9 +33,9 @@ metadata:
   annotations:
     lighthouse.com/website-url: https://spotify.com
   links:
-    - url: https://google.com
-      title: My Dashboard
-      icon: dashboard
+  - url: https://google.com
+    title: My Dashboard
+    icon: dashboard
 spec:
   type: website
   lifecycle: experimental

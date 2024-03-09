@@ -49,44 +49,25 @@ spec:
     required:
     - name
     properties:
-      name:
+      autoscaling:
         title: Enable autoscaling
         default: true
         type: boolean
+        ui:widget: radio
+      max_replicas:
+        title: Max replicas
+        type: string
+        pattern: '^[0-9]+$'
+      min_replicas:
+        title: Min replicas
+        type: string
+        pattern: '^[0-9]+$'
   - title: Set enviorment variables
     required:
     - name
     properties:
-      env_type:
+      env_vars:
         title: Enviorment Variables
-        type: string
-        description: Enviorment Variables Test
-        default: gp2
-        enum:
-          - gp2
-          - gp3
-          - io1
-          - io2
-          - standard
-        enumNames:
-          - 'General Purpose (gp2)'
-          - 'General Purpose (gp3)'
-          - 'Provisioned IOPS (io1)'
-          - 'Provisioned IOPS (io2)'
-          - 'Standard'
-      name:
-        title: Select environments
-        type: array
-        items:
-          type: string
-          enum:
-            - production
-            - staging
-            - development
-        uniqueItems: true
-        ui:widget: checkboxes
-      multiline:
-        title: Text area input
         type: string
         description: Enter enviorment variables
         ui:widget: textarea

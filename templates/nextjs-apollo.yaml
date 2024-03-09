@@ -45,6 +45,62 @@ spec:
         - Public
         - Private
         - Internal
+  - title: Set autoscaling settings
+    required:
+    - name
+    properties:
+      name:
+        title: Enable autoscaling
+        default: true
+        type: boolean
+  - title: Set enviorment variables
+    required:
+    - name
+    properties:
+      env_type:
+        title: Enviorment Variables
+        type: string
+        description: Enviorment Variables Test
+        default: gp2
+        enum:
+          - gp2
+          - gp3
+          - io1
+          - io2
+          - standard
+        enumNames:
+          - 'General Purpose (gp2)'
+          - 'General Purpose (gp3)'
+          - 'Provisioned IOPS (io1)'
+          - 'Provisioned IOPS (io2)'
+          - 'Standard'
+      name:
+        title: Select environments
+        type: array
+        items:
+          type: string
+          enum:
+            - production
+            - staging
+            - development
+        uniqueItems: true
+        ui:widget: checkboxes
+      multiline:
+        title: Text area input
+        type: string
+        description: Enter enviorment variables
+        ui:widget: textarea
+        ui:options:
+          rows: 15
+        ui:placeholder: |
+          apiVersion: backstage.io/v1alpha1
+            kind: Component
+            metadata:
+              name: test
+            spec:
+              type: library
+              owner: CNCF
+              lifecycle: experimental
   - title: Choose a location
     required:
     - repoUrl

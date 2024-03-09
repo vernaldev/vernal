@@ -45,6 +45,43 @@ spec:
         - Public
         - Private
         - Internal
+  - title: Set autoscaling settings
+    required:
+    - name
+    properties:
+      autoscaling:
+        title: Enable autoscaling
+        default: true
+        type: boolean
+        ui:widget: radio
+      max_replicas:
+        title: Max replicas
+        type: string
+        pattern: '^[0-9]+$'
+      min_replicas:
+        title: Min replicas
+        type: string
+        pattern: '^[0-9]+$'
+  - title: Set enviorment variables
+    required:
+    - name
+    properties:
+      env_vars:
+        title: Enviorment Variables
+        type: string
+        description: Enter enviorment variables
+        ui:widget: textarea
+        ui:options:
+          rows: 15
+        ui:placeholder: |
+          apiVersion: backstage.io/v1alpha1
+            kind: Component
+            metadata:
+              name: test
+            spec:
+              type: library
+              owner: CNCF
+              lifecycle: experimental
   - title: Choose a location
     required:
     - repoUrl

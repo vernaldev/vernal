@@ -38,7 +38,7 @@ import { HomePage } from './components/home/HomePage';
 import { keycloakOIDCAuthApiRef } from './apis';
 import { SignInPage } from '@backstage/core-components';
 import { themes, UnifiedThemeProvider } from '@backstage/theme';
-import { vernalTheme } from './theme/vernalTheme';
+import { vernalDarkTheme, vernalLightTheme } from './theme/vernalTheme';
 
 const app = createApp({
   components: {
@@ -74,14 +74,14 @@ const app = createApp({
     });
   },
   themes: [
-    {
-      id: 'light-theme',
-      title: 'Light Theme',
-      variant: 'light',
-      Provider: ({ children }) => (
-        <UnifiedThemeProvider theme={themes.light} children={children} />
-      ),
-    },
+    // {
+    //   id: 'light-theme',
+    //   title: 'Light Theme',
+    //   variant: 'light',
+    //   Provider: ({ children }) => (
+    //     <UnifiedThemeProvider theme={themes.light} children={children} />
+    //   ),
+    // },
     // {
     //   id: 'dark-theme',
     //   title: 'Dark Theme',
@@ -91,11 +91,19 @@ const app = createApp({
     //   ),
     // },
     {
-      id: 'dark-theme',
-      title: 'Dark Theme',
+      id: 'light-theme',
+      title: 'Light Theme',
       variant: 'light',
       Provider: ({ children }) => (
-        <UnifiedThemeProvider theme={vernalTheme} children={children} />
+        <UnifiedThemeProvider theme={vernalLightTheme} children={children} />
+      ),
+    },
+    {
+      id: 'dark-theme',
+      title: 'Dark Theme',
+      variant: 'dark',
+      Provider: ({ children }) => (
+        <UnifiedThemeProvider theme={vernalDarkTheme} children={children} />
       ),
     },
   ],

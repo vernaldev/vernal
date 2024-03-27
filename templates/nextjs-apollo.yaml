@@ -56,6 +56,44 @@ spec:
         ui:options:
           allowedHosts:
           - github.com
+  - title: Databases
+    properties:
+      redis:
+        title: Enable Redis?
+        type: boolean
+        default: false
+      postgres:
+        title: Enable PostgreSQL?
+        type: boolean
+        default: false
+
+    dependencies:
+      redis:
+        allOf:
+          - if:
+              properties:
+                redis:
+                  const: true
+            then:
+              required:
+                - redis-url
+              properties:
+                redis-url:
+                  title: Redis URL
+                  type: string
+      postgres:
+        allOf:
+          - if:
+              properties:
+                postgres:
+                  const: true
+            then:
+              required:
+                - postgres-url
+              properties:
+                postgres-url:
+                  title: Postgres URL
+                  type: string
 
   steps:
   - id: fetch-base
